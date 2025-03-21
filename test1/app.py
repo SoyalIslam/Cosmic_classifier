@@ -663,10 +663,26 @@ def main():
 
             # Title with enhanced styling
             st.markdown("""
-                <div class='main-title'>
-                    <h1>🌍 Planetary Habitability Explorer</h1>
-                </div>
-            """, unsafe_allow_html=True)
+    <style>
+        .main-title-container {
+            width: 100%; /* Adjust as needed */
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .main-title h1 {
+            font-size: 40px;
+            font-family: 'Courier New', monospace;
+            color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+
+    <div class='main-title-container'>
+        <div class='main-title'>
+            <h1>🌍 Planetary Habitability Explorer</h1>
+        </div>
+    </div>
+""", unsafe_allow_html=True)
             
             # Enhanced animated planet
             st.markdown("""
@@ -694,7 +710,8 @@ def main():
             white-space: nowrap;
             overflow: hidden;
             display: inline-block;
-            animation: typing 3s steps(40, end) infinite alternate, glow 1.5s infinite alternate;
+            animation: typing 3s steps(40, end);
+            margin: 0 auto;
         }
 
         /* Subtitle with soft glow */
@@ -705,9 +722,15 @@ def main():
             color: rgba(255, 255, 255, 0.7);
             animation: glow 1.5s infinite alternate;
         }
+
+        /* Widening the container */
+        .center-container {
+            width: 100%; /* Increase width as needed */
+            margin: 0 auto;
+        }
     </style>
 
-    <div style='text-align: center;'>
+    <div class="center-container">
         <h1 class="typing-container">Welcome to the Planetary Analysis System</h1>
         <br>
         <p class="glow-text">Explore the habitability potential of different planetary conditions</p> 
