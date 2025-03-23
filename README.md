@@ -77,13 +77,13 @@ We experimented with multiple ML models:
 - **Evaluation Metrics**: Measured **accuracy, precision, recall, and F1-score**.
 
 ### 4️⃣ **Final Model Selection**
-🚀 **Best Model**: **XGBoost** achieved the highest **99.55% validation accuracy**.
+🚀 **Best Model**: **XGBoost** achieved the highest **99.55% model performance**.
 
 ---
 
 ## 📈 Results and Analysis
 ### 🏆 **Best Model: XGBoost**
-- **Validation Accuracy**: **99.55%**
+- **Model Performance**: **99.55%**
 - **Feature Importance**:
   - **Gravity** 🪨, **Atmospheric Density** ☁, and **Water Content** 🌊 were key factors.
 - **Confusion Matrix**: Minor misclassifications between **Terraformable & Habitable planets**.
@@ -105,7 +105,7 @@ model.fit(X_train, y_train)
 
 ## 📌 Conclusion
 The **Galactic Classification Challenge** demonstrated the power of machine learning in planetary classification. 
-🚀 **XGBoost emerged as the best-performing model with 99.55% accuracy**.
+🚀 **XGBoost emerged as the best-performing model with 99.55% model performance**.
 ### 🔮 **Future Scope**
 - 🔭 **Deep Learning**: Use **CNNs & RNNs** for classification.
 - 🌍 **Geospatial Analysis**: Integrate planetary mapping.
