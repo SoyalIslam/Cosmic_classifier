@@ -151,9 +151,8 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 ## 📷 Visuals
-![Galaxy](https://upload.wikimedia.org/wikipedia/commons/2/2e/Galaxy_Cluster_ABELL_1689.jpg)
-
-![Animation](https://media.giphy.com/media/3o7abldj0b3rxrZUxW/giphy.gif)
+![Pridiction ](https://drive.google.com/file/d/1TxtqFwYSTNUzZQpEKvfoIzmd6jIPbGKl/view?usp=drive_link)
+![Home](https://drive.google.com/file/d/1ZaTtmYT47XabAoqdtPWW62YvsrScjDxx/view?usp=drive_link)
 
 ---
 
