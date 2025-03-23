@@ -129,7 +129,27 @@ The **Galactic Classification Challenge** demonstrated the power of machine lear
 | **🎨 UI/UX Designer** | Khushi Singh |
 
 ---
+## ⚙️ Installation
 
+1️⃣ **Clone the Repository**
+```sh
+git clone https://github.com/SoyalIslam/Cosmic_classifier.git
+cd Cosmic_classifier
+```
+2️⃣ Create a Virtual Environment (Optional but recommended)
+```sh
+python -m venv env
+source env/bin/activate   # Mac/Linux
+env\Scripts\activate      # Windows
+```
+3️⃣ Install Dependencies
+```sh
+pip install -r requirements.txt
+```
+4️⃣ Run the Streamlit App
+```sh
+streamlit run app.py
+```
 ## 📷 Visuals
 ![Galaxy](https://upload.wikimedia.org/wikipedia/commons/2/2e/Galaxy_Cluster_ABELL_1689.jpg)
 
