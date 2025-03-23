@@ -157,7 +157,9 @@ streamlit run app.py
 
 
 ---
+📚 References
 
+https://docs.google.com/document/d/1sYMr0zTlh6_cDVMLHkm12OwlmOoHkCLE/edit?usp=sharing&ouid=109017454699604670111&rtpof=true&sd=true
 
 🚀 *Happy Coding!* 🌠
 
