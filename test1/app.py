@@ -422,12 +422,11 @@ def load_custom_css():
     """, unsafe_allow_html=True)
 
 def add_video_background(video_file):
-    # Encode video file to base64
+
     with open(video_file, "rb") as f:
         video_bytes = f.read()
         encoded_video = base64.b64encode(video_bytes).decode()
 
-    # Inject custom HTML and CSS for video background
     st.markdown(
         f"""
         <style>
@@ -457,9 +456,9 @@ def add_video_background(video_file):
 def show_loading_animation():
     """Displays a temporary loading animation with a clearing effect."""
     st.session_state.loading = True
-    loading_placeholder = st.empty()  # Create a dynamic placeholder
+    loading_placeholder = st.empty()  
 
-    for _ in range(1):  # Show animation for 3 seconds
+    for _ in range(1): 
         loading_placeholder.markdown("""
             <div class="hacker-loader">
                 <div class="loader-text">   
@@ -470,12 +469,11 @@ def show_loading_animation():
                 </div>
             </div>
         """, unsafe_allow_html=True)
-        time.sleep(1)  # Simulate loading effect
+        time.sleep(1)  
 
     st.session_state.loading = False
-    loading_placeholder.empty()  # Clears the animation properly
+    loading_placeholder.empty()  
 
-# Function to plot feature importance
 def plot_feature_importance(input_values, feature_names):
     fig = px.bar(
         x=feature_names,
@@ -490,36 +488,72 @@ def plot_feature_importance(input_values, feature_names):
     )
     return fig
 
-# Function to display prediction card
-def display_prediction_card(prediction, probability=None):
-    if probability is None:
-        probability = np.random.uniform(0.6, 0.9)  # Mock probability for demonstration
-    
-    st.markdown(f"""
-        <div class="prediction-card">
-            <h2>Prediction Results</h2>
-            <div class="prediction-value">Classification: {prediction}</div>
-            <div class="probability-bar" style="width: {probability*100}%"></div>
-            <p>Confidence: {probability*100:.2f}%</p>
-            <p>Prediction made at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-        </div>
-    """, unsafe_allow_html=True)
 def type_text_letter_by_letter(text):
+    if text is None:
+        text=""
     placeholder = st.empty()
     typed_text = ""
 
     for char in text:
-        typed_text += char  # Add character
+        typed_text += char  
 
-        # Correctly format HTML injection to prevent errors
+        
         html_text = f"""
         ```html
-        <div class="typing-text">{typed_text}</div>
+        {typed_text}🛸
         ```
         """
         
         placeholder.markdown(html_text, unsafe_allow_html=True)
-        time.sleep(0.05)  # Adjust speed (0.05 sec per letter)
+        time.sleep(0.025)  
+
+
+def display_prediction_card(prediction, probability=None):
+    if probability is None:
+        probability = np.random.uniform(0.6, 0.9)  
+    
+    st.markdown("""
+        <style>
+            .prediction-card {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 15px;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                text-align: center;
+                color: white;
+            }
+            .probability-bar {
+                height: 10px;
+                background: linear-gradient(90deg, #4CAF50, #8BC34A);
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+            .oye_hoye{
+                color:#EB8612;
+                font-width: bold;
+
+                }
+                
+        </style>
+        <div class="prediction-card">
+            <h2>Prediction Results</h2>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    type_text_letter_by_letter(f"Classification: {prediction}")
+    
+    st.markdown(f"""
+        <div class="prediction-card">
+            <div class="probability-bar" style="width: {probability*100}%"></div>
+            <p>Confidence: {probability*100:.2f}%</p>
+            <p class="oye_hoye">Pclassrediction made at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+        </div>
+    """, unsafe_allow_html=True)
+
+
 
 def attribute(prediction):
     att = {
@@ -543,7 +577,7 @@ def attribute(prediction):
         return (
             """
             "Bewohnbar"
-            <br>
+             
             🌍 Habitable Planet: This planet has conditions that are favorable for life.
             It features a stable atmosphere, temperate surface temperature, and the presence of water.
             Such planets are prime candidates for human colonization and support a wide range of life forms.
@@ -552,9 +586,8 @@ def attribute(prediction):
         )
     
     elif prediction_label == "Terraformierbar":
-        return ("""
-                Terraformierbar
-                <br>
+        return ("""Terraformierbar
+                 
             🌱 Terraformable Planet: This planet, although currently uninhabitable, has the potential to be transformed into a habitable world.
             With the right technological advancements, conditions like atmosphere and temperature can be modified.
             Terraforming efforts could introduce breathable air, liquid water, and more hospitable temperatures over time.
@@ -564,7 +597,7 @@ def attribute(prediction):
     elif prediction_label == "Rohstoffreich":
         return ("""
                 Rohstoffreich
-                <br>
+                 
             🪙 Resource-Rich Planet: This planet is abundant in valuable resources such as metals, minerals, and other raw materials.
             These resources could be extracted for use in space exploration, industry, or even fuel production.
             While it may not be suitable for life as we know it, its wealth in natural resources makes it a prime candidate for mining operations.
@@ -572,9 +605,8 @@ def attribute(prediction):
         """)
     
     elif prediction_label == "Wissenschaftlich":
-        return ("""
-                Wissenschaftlich
-                <br>
+        return ("""Wissenschaftlich
+                 
             🔬 Scientifically Valuable Planet: This planet may not be suitable for human habitation, but it holds immense scientific interest.
             It could offer unique insights into planetary evolution, climate, and atmospheric conditions.
             Its study could help answer key questions about the universe's formation and provide valuable data for future planetary exploration.
@@ -583,16 +615,15 @@ def attribute(prediction):
     elif prediction_label == "Gasriese":
         return ("""
                 Gasriese
-                <br>
+                 
             🌌 Gas Giant: This planet is a massive gas-rich world, such as Jupiter or Saturn, primarily composed of hydrogen and helium.
             It lacks a solid surface, making it unsuitable for human habitation.
             However, it may have moons with conditions that could support life. These planets are also interesting for the study of planetary atmospheres and magnetism.
         """)
     
     elif prediction_label == "Wüstenplanet":
-        return ("""
-                Wüstenplanet
-                <br>
+        return ("""Wüstenplanet
+                 
             🌵 Desert World: This planet is characterized by harsh, arid conditions with little to no surface water. 
             Temperatures are extreme, and the atmosphere may be thin or toxic. 
             While uninhabitable in its current state, such planets may offer clues to the limits of life and could potentially host microbial life in the future. 
@@ -602,7 +633,7 @@ def attribute(prediction):
     elif prediction_label == "Eiswelt":
         return ("""
                Eiswelt
-                <br> 
+                  
             🧊 Ice World: This planet is a frozen, icy world, where surface temperatures are extremely low, often making it inhospitable for life. 
             The atmosphere may be composed of thick layers of ice and snow, and any liquid water would be locked away beneath the surface. 
             Though life as we know it is unlikely, such planets are of interest for their potential to harbor microbial life beneath the ice or in subglacial oceans.
@@ -611,7 +642,7 @@ def attribute(prediction):
     elif prediction_label == "Toxischetmosäre":
         return ("""
                 Toxischetmosäre
-                <br>
+                 
             ☠️ Toxic Atmosphere: This planet has a hostile, toxic atmosphere, likely composed of harmful gases such as methane, sulfur, or ammonia. 
             These gases make it unsuitable for life as we know it. 
             Any future exploration of such a planet would need to focus on technological solutions to protect astronauts and mitigate the effects of the toxic environment.
@@ -619,7 +650,7 @@ def attribute(prediction):
     
     elif prediction_label == "Hohestrahlung":
         return ("""Hohestrahlung
-                <br>
+                 
             ☢️ High Radiation Levels: This planet is subject to extremely high radiation, possibly due to a nearby star or a lack of a magnetic field.
             The radiation levels present a significant hazard for human exploration and habitation. "
             Such planets might be studied for their ability to support life under intense radiation or for their potential as energy sources, but they are currently not suitable for life.
@@ -628,7 +659,7 @@ def attribute(prediction):
     elif prediction_label == "Toterahswelt":
         return ("""
                 Toterahswelt
-                <br>
+                 
             ⚰️ Dead World: This planet is lifeless, with no signs of biological activity or potential for future life. 
             The surface may be barren, and the environment is inhospitable. 
             Such planets are of interest primarily for geological studies and understanding the processes that lead to the extinction of habitable environments.
@@ -641,50 +672,33 @@ def attribute(prediction):
 
     # Main app function
 def main():
-    # Page configuration
+    
     st.set_page_config(page_title="Planetary Habitability Predictor", layout="wide")
     
-    # Load custom CSS
     load_custom_css()
-    # Initialize session state
+
     if 'page' not in st.session_state:
         st.session_state.page = 'home'
         
 
     # Home Page
     if st.session_state.page == 'home':
-        # Add background image
+    
         add_video_background("my_video.mp4")
 
-        # Create a centered layout
+        
         col1, col2, col3 = st.columns([1,2,1])
         
         with col2:
 
-            # Title with enhanced styling
-            st.markdown("""
-    <style>
-        .main-title-container {
-            width: 100%; /* Adjust as needed */
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .main-title h1 {
-            font-size: 40px;
-            font-family: 'Courier New', monospace;
-            color: rgba(255, 255, 255, 0.9);
-        }
-    </style>
-
-    <div class='main-title-container'>
-        <div class='main-title'>
-            <h1>🌍 Planetary Habitability Explorer</h1>
-        </div>
-    </div>
-""", unsafe_allow_html=True)
             
-            # Enhanced animated planet
+            st.markdown("""
+                <div class='main-title'>
+                    <h1>🌍 Planetary Habitability Explorer</h1>
+                </div>
+            """, unsafe_allow_html=True)
+            
+            
             st.markdown("""
     <style>
         /* Typing Animation */
@@ -710,8 +724,7 @@ def main():
             white-space: nowrap;
             overflow: hidden;
             display: inline-block;
-            animation: typing 3s steps(40, end);
-            margin: 0 auto;
+            animation: typing 3s steps(40, end) infinite alternate, glow 1.5s infinite alternate;
         }
 
         /* Subtitle with soft glow */
@@ -722,25 +735,18 @@ def main():
             color: rgba(255, 255, 255, 0.7);
             animation: glow 1.5s infinite alternate;
         }
-
-        /* Widening the container */
-        .center-container {
-            width: 100%; /* Increase width as needed */
-            margin: 0 auto;
-        }
     </style>
 
-    <div class="center-container">
+    <div style='text-align: center;'>
         <h1 class="typing-container">Welcome to the Planetary Analysis System</h1>
-        <br>
-        <p class="glow-text">Explore the habitability potential of different planetary conditions</p> 
+          <p class="glow-text">Explore the habitability potential of different planetary conditions</p> 
     </div>
 """, unsafe_allow_html=True)
 
             
 
             
-            # Enhanced start button
+            
             if st.button("🚀 Begin Exploration"):
                 st.write("\n")
                 show_loading_animation()
@@ -750,21 +756,21 @@ def main():
     # Prediction Page
     elif st.session_state.page == 'prediction':
         try:
-            # Load the trained model
-            model_path = "decision_tree_model.pkl"
+           
+            model_path = "xgboast.pkl"
             if not os.path.exists(model_path):
                 st.error("⚠ Model is not Here! Bro path sahi se check kar le 😊!")
             else:
                 with open(model_path, "rb") as model_file:
                     model = pickle.load(model_file)
 
-            # Enhanced header with animation
+            
             st.markdown("""
                 <div class='main-title'>
                     <h1>🌟 Planetary Analysis Dashboard</h1>
                 </div>
             """, unsafe_allow_html=True)
-            # Feature ranges with descriptions
+            
             feature_ranges = {
                 "Atmospheric Density": {
                     "range": (0.0, 9.32),
@@ -857,7 +863,7 @@ def main():
                                     )
                                     input_values.append(value)
 
-                # Convert input values to DataFrame
+                
             input_df = pd.DataFrame([input_values], columns=[f[0] for f in features_list])
             st.write("\n")
             if st.button("🔮 Analyze Planet", key="predict_button"):
@@ -866,14 +872,14 @@ def main():
         
                     st.write("\n")
                     st.write("\n")
-                    # Make prediction
+                    
                     prediction = model.predict(input_df)
                     loading_placeholder.empty()
-                    #     splay prediction card
+                    
 
-                    display_prediction_card(type_text_letter_by_letter(attribute(prediction)))
+                    type_text_letter_by_letter(display_prediction_card(attribute(prediction)))
                 
-                    #     ot feature importance
+                    
                     st.plotly_chart(
                             plot_feature_importance(
                                 input_values,
@@ -883,7 +889,7 @@ def main():
                         )
         
 
-            # Enhanced navigation
+            
             col1, col2 = st.columns(2)
             with col1:
                 if st.button("🏠 Return to Home"):
@@ -891,7 +897,7 @@ def main():
                     st.rerun()
             with col2:
                 if st.button("📥 Export Results"):
-                    # Create download link for results
+                    
                     csv = input_df.to_csv(index=False)
                     b64 = base64.b64encode(csv.encode()).decode()
                     href = f'<a href="data:file/csv;base64,{b64}" download="planetary_analysis.csv">Download Analysis Results</a>'
@@ -903,6 +909,6 @@ def main():
                 st.session_state.page = 'home'
                 st.rerun()
 
-# Run the app
+
 if __name__ == "__main__":
     main()
