@@ -151,8 +151,8 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 ## 📷 Visuals
-![Pridiction ](https://drive.google.com/file/d/1TxtqFwYSTNUzZQpEKvfoIzmd6jIPbGKl/view?usp=drive_link)
-![Home](https://drive.google.com/file/d/1ZaTtmYT47XabAoqdtPWW62YvsrScjDxx/view?usp=drive_link)
+![Pridiction ](https://lh3.google.com/u/0/d/1ZaTtmYT47XabAoqdtPWW62YvsrScjDxx=w1920-h912-iv1))
+![Home](https://lh3.google.com/u/0/d/1TxtqFwYSTNUzZQpEKvfoIzmd6jIPbGKl=w1920-h912-iv1)
 
 ---
 
