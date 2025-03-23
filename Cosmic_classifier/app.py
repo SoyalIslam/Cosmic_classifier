@@ -512,9 +512,9 @@ def display_prediction_card(prediction, probability=None):
     if probability is None:
         probability = np.random.uniform(0.6, 0.9)  
     
-    st.markdown("""
+    st.markdown(f"""
         <style>
-            .prediction-card {
+            .prediction-card {{
                 background: rgba(255, 255, 255, 0.1);
                 border-radius: 15px;
                 padding: 20px;
@@ -524,49 +524,59 @@ def display_prediction_card(prediction, probability=None):
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 text-align: center;
                 color: white;
-            }
-            .probability-bar {
-                height: 10px;
-                background: linear-gradient(90deg, #4CAF50, #8BC34A);
+                margin-bottom: 10px;
+            }}
+            .probability-bar-container {{
+                width: 100%;
+                background: rgba(255, 255, 255, 0.2);
                 border-radius: 5px;
                 margin-top: 10px;
-            }
-            .oye_hoye{
-                color:#EB8612;
-                font-width: bold;
-
-                }
-                
+                overflow: hidden;
+            }}
+            .probability-bar {{
+                height: 10px;
+                background: linear-gradient(90deg, #F26D16, #8BC34A);
+                border-radius: 5px;
+                width: 0%; /* Start with 0 width */
+                animation: fillBar 1.5s ease-in-out forwards;
+            }}
+            @keyframes fillBar {{
+                from {{ width: 0%; }}
+                to {{ width: {probability * 100}%; }}
+            }}
         </style>
+    """, unsafe_allow_html=True)
+
+    # Display the prediction title
+    st.markdown("""
         <div class="prediction-card">
             <h2>Prediction Results</h2>
         </div>
     """, unsafe_allow_html=True)
+    type_text_letter_by_letter(f"Classification: {prediction}") 
     
-    type_text_letter_by_letter(f"Classification: {prediction}")
-    
-    st.markdown(f"""
-        <div class="prediction-card">
-            <p>Confidence: {probability*100:.2f}%</p>
-            <div class="probability-bar" style="width: {probability*100}%"></div>
-            <p class="oye_hoye">Pclassrediction made at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f"""    
+    <div class="prediction-card">
+        <p>Confidence: {probability * 100:.2f}%</p>
+        <div class="probability-bar"></div>
+        <p>Prediction made at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+    </div>
+""", unsafe_allow_html=True)
 
 
 
 def attribute(prediction):
     att = {
-        1: "Bewohnbar",
-        2: "Terraformierbar",
-        3: "Rohstoffreich",
-        4: "Wissenschaftlich",
-        5: "Gasriese",
-        6: "Wüstenplanet",
-        7: "Eiswelt",
-        8: "Toxischetmosäre",
-        9: "Hohestrahlung",
-        10: "Toterahswelt"
+        0: "Bewohnbar",
+        1: "Terraformierbar",
+        2: "Rohstoffreich",
+        3: "Wissenschaftlich",
+        4: "Gasriese",
+        5: "Wüstenplanet",
+        6: "Eiswelt",
+        7: "Toxischetmosäre",
+        8: "Hohestrahlung",
+        9: "Toterahswelt"
     }
     
     # Get the planet classification label from the dictionary
@@ -693,12 +703,28 @@ def main():
 
             
             st.markdown("""
-                <div class='main-title'>
-                    <h1>🌍 Planetary Habitability Explorer</h1>
-                </div>
-            """, unsafe_allow_html=True)
-            
-            
+    <style>
+        .main-title-container {
+            width: 100%; /* Adjust as needed */
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .main-title h1 {
+            font-size: 40px;
+            font-family: 'Courier New', monospace;
+            color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+
+    <div class='main-title-container'>
+        <div class='main-title'>
+            <h1>🌍 Planetary Habitability Explorer</h1>
+        </div>
+    </div>
+""", unsafe_allow_html=True)
+
+            # Enhanced animated planet
             st.markdown("""
     <style>
         /* Typing Animation */
@@ -724,7 +750,8 @@ def main():
             white-space: nowrap;
             overflow: hidden;
             display: inline-block;
-            animation: typing 3s steps(40, end) infinite alternate, glow 1.5s infinite alternate;
+            animation: typing 3s steps(40, end);
+            margin: 0 auto;
         }
 
         /* Subtitle with soft glow */
@@ -735,18 +762,24 @@ def main():
             color: rgba(255, 255, 255, 0.7);
             animation: glow 1.5s infinite alternate;
         }
+
+        /* Widening the container */
+        .center-container {
+            width: 100%; /* Increase width as needed */
+            margin: 0 auto;
+        }
     </style>
 
-    <div style='text-align: center;'>
-        <h1 class="typing-container">Welcome to the Planetary Analysis System</h1>
-          <p class="glow-text">Explore the habitability potential of different planetary conditions</p> 
+    <div class="center-container">
+        <h1 class="typing-container">Welcome to the Planetary Analysis</h1>
+        <br>
+        <p class="glow-text">Explore the habitability potential of different planetary conditions</p> 
     </div>
+        <br>
+        <br>
 """, unsafe_allow_html=True)
-
             
 
-            
-            
             if st.button("🚀 Begin Exploration"):
                 st.write("\n")
                 show_loading_animation()
@@ -866,6 +899,7 @@ def main():
                 
             input_df = pd.DataFrame([input_values], columns=[f[0] for f in features_list])
             st.write("\n")
+            
             if st.button("🔮 Analyze Planet", key="predict_button"):
                     loading_placeholder = st.empty()
                     show_loading_animation()
