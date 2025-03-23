@@ -205,7 +205,7 @@ def load_custom_css():
             font-size: 3em;
             margin-bottom: 30px;
             text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
-        }
+                }
 
         /* Feature title styling */
         .feature-title {
@@ -216,83 +216,83 @@ def load_custom_css():
         }
 
         /* Prediction card styling */
-.prediction-card {
- position: relative;
-    width: 100%;
-    max-width: 1500px;
-    height: auto;
-    background-color: #000;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 16px;
-    gap: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    color: white;
-    box-sizing: border-box;
-    font-size: 24px; /* Medium font size */
-    font-family: 'Courier New', monospace;
-    color: rgba(255, 255, 255, 0.8); /* Semi-transparent text */
-    white-space: normal; /* Allows wrapping */
-    overflow: hidden; /* Prevents text overflow */
-    text-align: center; /* Centers text inside the container */
-    word-wrap: break-word; /* Ensures long words break */
-    animation: glow 1.5s infinite alternate;
-}
+        .prediction-card {
+         position: relative;
+            width: 100%;
+            max-width: 1500px;
+            height: auto;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px;
+            gap: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            box-sizing: border-box;
+            font-size: 24px; /* Medium font size */
+            font-family: 'Courier New', monospace;
+            color: rgba(255, 255, 255, 0.8); /* Semi-transparent text */
+            white-space: normal; /* Allows wrapping */
+            overflow: hidden; /* Prevents text overflow */
+            text-align: center; /* Centers text inside the container */
+            word-wrap: break-word; /* Ensures long words break */
+            animation: glow 1.5s infinite alternate;
+        }
 
 
 
-.prediction-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    left: -5px;
-    margin: auto;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
-    border-radius: 10px;
-    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
-    z-index: -10;
-    pointer-events: none;
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
+        .prediction-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            left: -5px;
+            margin: auto;
+            width: calc(100% + 10px);
+            height: calc(100% + 10px);
+            border-radius: 10px;
+            background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
+            z-index: -10;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-.prediction-card::after {
-    content: "";
-    z-index: -1;
-    position: center;
-    inset: 0;
-    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
-    transform: translate3d(0, 0, 0) scale(0.95);
-    filter: blur(20px);
-}
+        .prediction-card::after {
+            content: "";
+            z-index: -1;
+            position: center;
+            inset: 0;
+            background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+            transform: translate3d(0, 0, 0) scale(0.95);
+            filter: blur(20px);
+        }
 
-.prediction-card::after {
-    filter: blur(30px);
-}
+        .prediction-card::after {
+            filter: blur(30px);
+        }
 
-.prediction-card::before {
-    transform: rotate(-180deg) scaleX(1.0) scaleY(1.05);
-}
+        .prediction-card::before {
+            transform: rotate(-180deg) scaleX(1.0) scaleY(1.05);
+        }
 
-.heading {
-    font-size: 1.2rem;
-    text-transform: capitalize;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
+        .heading {
+            font-size: 1.2rem;
+            text-transform: capitalize;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
 
-.prediction-card p:not(.heading) {
-    font-size: 0.9rem;
-    margin: 0.25rem 0;
-}
+        .prediction-card p:not(.heading) {
+            font-size: 0.9rem;
+            margin: 0.25rem 0;
+        }
 
-.prediction-card p:last-child {
-    color: #e81cff;
-    font-weight: 600;
-    margin-top: auto;
-}
+        .prediction-card p:last-child {
+            color: #e81cff;
+            font-weight: 600;
+            margin-top: auto;
+        }
 
         /* Loading animation */
          .hacker-loader {
@@ -547,8 +547,8 @@ def display_prediction_card(prediction, probability=None):
     
     st.markdown(f"""
         <div class="prediction-card">
-            <div class="probability-bar" style="width: {probability*100}%"></div>
             <p>Confidence: {probability*100:.2f}%</p>
+            <div class="probability-bar" style="width: {probability*100}%"></div>
             <p class="oye_hoye">Pclassrediction made at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
         </div>
     """, unsafe_allow_html=True)
@@ -757,7 +757,7 @@ def main():
     elif st.session_state.page == 'prediction':
         try:
            
-            model_path = "xgboast.pkl"
+            model_path = "XGB.pkl"
             if not os.path.exists(model_path):
                 st.error("⚠ Model is not Here! Bro path sahi se check kar le 😊!")
             else:
