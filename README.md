@@ -77,7 +77,7 @@ We experimented with multiple ML models:
 - **Evaluation Metrics**: Measured **accuracy, precision, recall, and F1-score**.
 
 ### 4️⃣ **Final Model Selection**
-🚀 **Best Model**: **XGBoost** achieved the highest **91.5% validation accuracy**.
+🚀 **Best Model**: **XGBoost** achieved the highest **99.55% validation accuracy**.
 
 ---
 
